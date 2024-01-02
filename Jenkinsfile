@@ -7,7 +7,7 @@ pipeline {
        steps {
          def mvn = tool 'mymaven';
          withSonarQubeEnv('sonarqube') {
-           sh 'maven clean package sonar:sonar'
+           sh 'mvn clean package sonar:sonar'
           }
         }
        } 
