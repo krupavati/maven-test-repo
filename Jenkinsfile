@@ -1,11 +1,14 @@
-node {
-  stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    def mvn = tool 'mymaven';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar"
-    }
-  }
-}
+pipeline {
+   agent none
+   stages {
+
+     stage("build & SonarQube Analysis") {
+       agent any
+       steps {   
+         withSonarQubeEnv('sonar_server') {
+           sh 'mvn clean package sonar:sonar'
+          }
+        }
+       } 
+      }
+     }
