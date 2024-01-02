@@ -1,7 +1,6 @@
 pipeline {
    agent any
    stages {
-     def mvn = tool 'mymaven';
      stage("build & SonarQube Analysis") {
        agent any
        steps {
